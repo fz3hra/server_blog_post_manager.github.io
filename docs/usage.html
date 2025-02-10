@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>API Usage Documentation | back_blog_post_manager </title>
+      <title>Auth and Post API Usage Documentation | back_blog_post_manager </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="API Usage Documentation | back_blog_post_manager ">
+      <meta name="title" content="Auth and Post API Usage Documentation | back_blog_post_manager ">
       
       
       <link rel="icon" href="../favicon.ico">
@@ -85,27 +85,25 @@
         </div>
 
         <article data-uid="">
-<h1 id="api-usage-documentation">API Usage Documentation</h1>
+<h1 id="auth-and-post-api-usage-documentation">Auth and Post API Usage Documentation</h1>
 
 <h2 id="introduction">Introduction</h2>
-<p>This document provides a structured overview of the <strong>Auth API</strong> and <strong>Post API</strong> for user authentication and managing posts. It includes endpoint details, request and response formats, required headers, and potential errors.</p>
+<p>The <strong>Post API</strong> provides functionalities to manage posts in a database. The repository pattern is used to encapsulate data access logic. This document describes the API endpoints, their expected requests, and responses.</p>
 <h2 id="dependencies">Dependencies</h2>
 <p>This API uses the following dependencies:</p>
 <ul>
 <li><code>AutoMapper</code> for object mapping</li>
 <li><code>Entity Framework Core</code> for database operations</li>
 <li><code>ILogger</code> for logging</li>
-<li><code>System.IdentityModel.Tokens.Jwt</code> for token handling</li>
-<li><code>Microsoft.AspNetCore.Identity</code> for user management</li>
 </ul>
 <h2 id="authorization-and-headers">Authorization and Headers</h2>
 <p>All API endpoints require the following headers:</p>
 <ul>
-<li><code>Authorization</code>: <code>Bearer &lt;token&gt;</code> - A valid Bearer token for authentication (for secured endpoints).</li>
+<li><code>Authorization</code>: <code>Bearer &lt;token&gt;</code> - A valid Bearer token for authentication.</li>
 <li><code>Content-Type</code>: <code>application/json</code> - Indicates that the request body is in JSON format.</li>
 </ul>
 <hr>
-<h2 id="auth-api-endpoints">Auth API Endpoints</h2>
+<h2 id="authentication-api">Authentication API</h2>
 <h3 id="1-register-a-user">1. Register a User</h3>
 <p><strong>Endpoint:</strong></p>
 <pre><code class="lang-http">POST /api/Auth/register
@@ -117,40 +115,24 @@
 </code></pre>
 <p><strong>Request Body:</strong></p>
 <pre><code class="lang-json">{
-  &quot;email&quot;: &quot;string&quot;,
-  &quot;password&quot;: &quot;string&quot;,
-  &quot;firstName&quot;: &quot;string&quot;,
-  &quot;lastName&quot;: &quot;string&quot;,
-  &quot;userName&quot;: &quot;string&quot;
+  &quot;email&quot;: &quot;jdoe@gmail.com&quot;,
+  &quot;password&quot;: &quot;Admin123!&quot;,
+  &quot;firstName&quot;: &quot;John&quot;,
+  &quot;lastName&quot;: &quot;Doe&quot;,
+  &quot;userName&quot;: &quot;jdoe&quot;
 }
 </code></pre>
 <p><strong>Response:</strong></p>
-<ul>
-<li><strong>200 OK:</strong></li>
-</ul>
 <pre><code class="lang-json">{
-  &quot;message&quot;: &quot;Registration successful.&quot;
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;User registered successfully&quot;
 }
 </code></pre>
+<p><strong>Error Responses:</strong></p>
 <ul>
-<li><strong>400 Bad Request:</strong></li>
+<li><code>400 Bad Request</code>: Missing or invalid fields.</li>
+<li><code>409 Conflict</code>: Email already exists.</li>
 </ul>
-<pre><code class="lang-json">{
-  &quot;errors&quot;: {
-    &quot;email&quot;: &quot;Email is already registered.&quot;
-  }
-}
-</code></pre>
-<ul>
-<li><strong>500 Internal Server Error:</strong></li>
-</ul>
-<pre><code class="lang-json">{
-  &quot;title&quot;: &quot;An error occurred while processing request&quot;,
-  &quot;status&quot;: 500,
-  &quot;detail&quot;: &quot;Error message&quot;
-}
-</code></pre>
-<hr>
 <h3 id="2-login-a-user">2. Login a User</h3>
 <p><strong>Endpoint:</strong></p>
 <pre><code class="lang-http">POST /api/Auth/login
@@ -162,37 +144,23 @@
 </code></pre>
 <p><strong>Request Body:</strong></p>
 <pre><code class="lang-json">{
-  &quot;email&quot;: &quot;string&quot;,
-  &quot;password&quot;: &quot;string&quot;
+  &quot;email&quot;: &quot;jdoe@gmail.com&quot;,
+  &quot;password&quot;: &quot;Admin123!&quot;
 }
 </code></pre>
 <p><strong>Response:</strong></p>
-<ul>
-<li><strong>200 OK:</strong></li>
-</ul>
 <pre><code class="lang-json">{
-  &quot;userId&quot;: &quot;string&quot;,
-  &quot;token&quot;: &quot;string&quot;
+  &quot;userId&quot;: &quot;e3a9df31-90ce-4a2f-93a7-ceafc7401131&quot;,
+  &quot;token&quot;: &quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&quot;
 }
 </code></pre>
+<p><strong>Error Responses:</strong></p>
 <ul>
-<li><strong>401 Unauthorized:</strong></li>
+<li><code>401 Unauthorized</code>: Incorrect credentials.</li>
+<li><code>500 Internal Server Error</code>: Login service unavailable.</li>
 </ul>
-<pre><code class="lang-json">{
-  &quot;message&quot;: &quot;Invalid credentials.&quot;
-}
-</code></pre>
-<ul>
-<li><strong>500 Internal Server Error:</strong></li>
-</ul>
-<pre><code class="lang-json">{
-  &quot;title&quot;: &quot;An error occurred while processing request&quot;,
-  &quot;status&quot;: 500,
-  &quot;detail&quot;: &quot;Error message&quot;
-}
-</code></pre>
 <hr>
-<h2 id="post-api-endpoints">Post API Endpoints</h2>
+<h2 id="post-api">Post API</h2>
 <h3 id="1-create-a-post">1. Create a Post</h3>
 <p><strong>Endpoint:</strong></p>
 <pre><code class="lang-http">POST /api/posts
@@ -205,55 +173,41 @@
 </code></pre>
 <p><strong>Request Body:</strong></p>
 <pre><code class="lang-json">{
-  &quot;title&quot;: &quot;string&quot;,
-  &quot;description&quot;: &quot;string&quot;,
-  &quot;tags&quot;: [&quot;string&quot;],
-  &quot;featuredImageUrl&quot;: &quot;string&quot;,
-  &quot;excerpt&quot;: &quot;string&quot;,
+  &quot;title&quot;: &quot;Sample Post&quot;,
+  &quot;description&quot;: &quot;This is a test post.&quot;,
+  &quot;tags&quot;: [&quot;tech&quot;, &quot;blog&quot;],
+  &quot;featuredImageUrl&quot;: &quot;https://example.com/image.jpg&quot;,
+  &quot;excerpt&quot;: &quot;Short description of the post.&quot;,
   &quot;isPublished&quot;: true
 }
 </code></pre>
 <p><strong>Response:</strong></p>
-<ul>
-<li><strong>200 OK:</strong></li>
-</ul>
 <pre><code class="lang-json">{
   &quot;success&quot;: true,
   &quot;message&quot;: &quot;Post created successfully&quot;,
   &quot;post&quot;: {
-    &quot;title&quot;: &quot;string&quot;,
-    &quot;description&quot;: &quot;string&quot;,
-    &quot;tags&quot;: [&quot;string&quot;],
-    &quot;featuredImageUrl&quot;: &quot;string&quot;,
-    &quot;excerpt&quot;: &quot;string&quot;,
-    &quot;id&quot;: 0,
+    &quot;title&quot;: &quot;Sample Post&quot;,
+    &quot;description&quot;: &quot;This is a test post.&quot;,
+    &quot;tags&quot;: [&quot;tech&quot;, &quot;blog&quot;],
+    &quot;featuredImageUrl&quot;: &quot;https://example.com/image.jpg&quot;,
+    &quot;excerpt&quot;: &quot;Short description of the post.&quot;,
+    &quot;id&quot;: 1,
     &quot;createdAt&quot;: &quot;2025-02-10T08:03:19.883Z&quot;,
-    &quot;createdBy&quot;: &quot;string&quot;,
+    &quot;createdBy&quot;: &quot;jdoe&quot;,
     &quot;status&quot;: 0,
     &quot;viewCount&quot;: 0,
     &quot;isPublished&quot;: true,
     &quot;lastModifiedAt&quot;: &quot;2025-02-10T08:03:19.883Z&quot;,
-    &quot;lastModifiedBy&quot;: &quot;string&quot;
+    &quot;lastModifiedBy&quot;: &quot;jdoe&quot;
   }
 }
 </code></pre>
+<p><strong>Error Responses:</strong></p>
 <ul>
-<li><strong>401 Unauthorized:</strong></li>
+<li><code>400 Bad Request</code>: Missing required fields.</li>
+<li><code>401 Unauthorized</code>: Invalid or missing Bearer token.</li>
+<li><code>500 Internal Server Error</code>: Database issue.</li>
 </ul>
-<pre><code class="lang-json">{
-  &quot;success&quot;: false,
-  &quot;message&quot;: &quot;User not authenticated&quot;
-}
-</code></pre>
-<ul>
-<li><strong>500 Internal Server Error:</strong></li>
-</ul>
-<pre><code class="lang-json">{
-  &quot;success&quot;: false,
-  &quot;message&quot;: &quot;An error occurred while creating the post.&quot;
-}
-</code></pre>
-<hr>
 <h3 id="2-get-all-posts">2. Get All Posts</h3>
 <p><strong>Endpoint:</strong></p>
 <pre><code class="lang-http">GET /api/posts
@@ -264,105 +218,72 @@
   &quot;Content-Type&quot;: &quot;application/json&quot;
 }
 </code></pre>
-<p><strong>Query Parameters:</strong></p>
-<ul>
-<li><code>status</code> (optional): Integer (0, 1, 2)</li>
-</ul>
 <p><strong>Response:</strong></p>
-<ul>
-<li><strong>200 OK:</strong></li>
-</ul>
 <pre><code class="lang-json">{
   &quot;success&quot;: true,
-  &quot;message&quot;: &quot;Posts retrieved successfully.&quot;,
+  &quot;message&quot;: &quot;Posts retrieved successfully&quot;,
   &quot;posts&quot;: [
     {
-      &quot;title&quot;: &quot;string&quot;,
-      &quot;description&quot;: &quot;string&quot;,
-      &quot;tags&quot;: [&quot;string&quot;],
-      &quot;featuredImageUrl&quot;: &quot;string&quot;,
-      &quot;excerpt&quot;: &quot;string&quot;,
-      &quot;id&quot;: 0,
-      &quot;createdAt&quot;: &quot;2025-02-10T08:04:14.195Z&quot;,
-      &quot;createdBy&quot;: &quot;string&quot;,
+      &quot;id&quot;: 1,
+      &quot;title&quot;: &quot;Sample Post&quot;,
+      &quot;description&quot;: &quot;This is a test post.&quot;,
+      &quot;tags&quot;: [&quot;tech&quot;, &quot;blog&quot;],
+      &quot;createdAt&quot;: &quot;2025-02-10T08:03:19.883Z&quot;,
+      &quot;createdBy&quot;: &quot;jdoe&quot;,
       &quot;status&quot;: 0,
-      &quot;viewCount&quot;: 0,
-      &quot;isPublished&quot;: true,
-      &quot;lastModifiedAt&quot;: &quot;2025-02-10T08:04:14.195Z&quot;,
-      &quot;lastModifiedBy&quot;: &quot;string&quot;
+      &quot;viewCount&quot;: 10,
+      &quot;isPublished&quot;: true
     }
   ]
 }
 </code></pre>
-<ul>
-<li><strong>401 Unauthorized:</strong></li>
-</ul>
-<pre><code class="lang-json">{
-  &quot;success&quot;: false,
-  &quot;message&quot;: &quot;User not authenticated&quot;
-}
-</code></pre>
-<ul>
-<li><strong>500 Internal Server Error:</strong></li>
-</ul>
-<pre><code class="lang-json">{
-  &quot;success&quot;: false,
-  &quot;message&quot;: &quot;An error occurred while retrieving posts.&quot;
-}
-</code></pre>
-<hr>
 <h3 id="3-get-post-by-id">3. Get Post by ID</h3>
 <p><strong>Endpoint:</strong></p>
 <pre><code class="lang-http">GET /api/posts/{id}
 </code></pre>
-<p><strong>Headers:</strong></p>
-<pre><code class="lang-json">{
-  &quot;Authorization&quot;: &quot;Bearer &lt;token&gt;&quot;,
-  &quot;Content-Type&quot;: &quot;application/json&quot;
-}
-</code></pre>
-<p><strong>Path Parameters:</strong></p>
-<ul>
-<li><code>id</code> (required): Integer, the unique identifier of the post.</li>
-</ul>
 <p><strong>Response:</strong></p>
-<ul>
-<li><strong>200 OK:</strong></li>
-</ul>
 <pre><code class="lang-json">{
   &quot;success&quot;: true,
-  &quot;message&quot;: &quot;Post retrieved successfully.&quot;,
+  &quot;message&quot;: &quot;Post retrieved successfully&quot;,
   &quot;post&quot;: {
-    &quot;title&quot;: &quot;string&quot;,
-    &quot;description&quot;: &quot;string&quot;,
-    &quot;tags&quot;: [&quot;string&quot;],
-    &quot;featuredImageUrl&quot;: &quot;string&quot;,
-    &quot;excerpt&quot;: &quot;string&quot;,
-    &quot;id&quot;: 0,
-    &quot;createdAt&quot;: &quot;2025-02-10T08:04:35.814Z&quot;,
-    &quot;createdBy&quot;: &quot;string&quot;,
+    &quot;id&quot;: 1,
+    &quot;title&quot;: &quot;Sample Post&quot;,
+    &quot;description&quot;: &quot;This is a test post.&quot;,
+    &quot;tags&quot;: [&quot;tech&quot;, &quot;blog&quot;],
+    &quot;createdAt&quot;: &quot;2025-02-10T08:03:19.883Z&quot;,
+    &quot;createdBy&quot;: &quot;jdoe&quot;,
     &quot;status&quot;: 0,
-    &quot;viewCount&quot;: 0,
-    &quot;isPublished&quot;: true,
-    &quot;lastModifiedAt&quot;: &quot;2025-02-10T08:04:35.814Z&quot;,
-    &quot;lastModifiedBy&quot;: &quot;string&quot;
+    &quot;viewCount&quot;: 10,
+    &quot;isPublished&quot;: true
   }
 }
 </code></pre>
-<ul>
-<li><strong>404 Not Found:</strong></li>
-</ul>
+<h3 id="4-update-a-post">4. Update a Post</h3>
+<p><strong>Endpoint:</strong></p>
+<pre><code class="lang-http">PUT /api/posts/{id}
+</code></pre>
+<p><strong>Request Body:</strong></p>
 <pre><code class="lang-json">{
-  &quot;success&quot;: false,
-  &quot;message&quot;: &quot;Post not found.&quot;
+  &quot;title&quot;: &quot;Updated Post Title&quot;,
+  &quot;description&quot;: &quot;Updated description.&quot;,
+  &quot;tags&quot;: [&quot;updated&quot;, &quot;blog&quot;],
+  &quot;isPublished&quot;: true
 }
 </code></pre>
-<ul>
-<li><strong>500 Internal Server Error:</strong></li>
-</ul>
+<p><strong>Response:</strong></p>
 <pre><code class="lang-json">{
-  &quot;success&quot;: false,
-  &quot;message&quot;: &quot;An error occurred while retrieving the post.&quot;
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Post updated successfully&quot;
+}
+</code></pre>
+<h3 id="5-delete-a-post">5. Delete a Post</h3>
+<p><strong>Endpoint:</strong></p>
+<pre><code class="lang-http">DELETE /api/posts/{id}
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code class="lang-json">{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Post deleted successfully&quot;
 }
 </code></pre>
 <hr>
@@ -373,13 +294,8 @@
   &quot;message&quot;: &quot;Error description&quot;
 }
 </code></pre>
-<h2 id="logging-and-debugging">Logging and Debugging</h2>
-<ul>
-<li>Errors and exceptions are logged using <code>ILogger</code>.</li>
-<li>Logs can be retrieved from the application logs for debugging issues.</li>
-</ul>
 <h2 id="conclusion">Conclusion</h2>
-<p>This document provides a structured overview of the Auth and Post APIs, including endpoints, request and response formats, and error handling. Ensure that API clients handle errors properly and use correct authorization mechanisms.</p>
+<p>This document provides a structured overview of the <strong>Post API</strong> and <strong>Authentication API</strong>, including endpoints, request and response formats, and logging details. Ensure that API clients handle errors properly and use correct authorization mechanisms.</p>
 
 </article>
 
