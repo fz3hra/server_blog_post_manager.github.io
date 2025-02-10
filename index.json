@@ -1,4 +1,9 @@
 {
+  "README.html": {
+    "href": "README.html",
+    "title": "| back_blog_post_manager",
+    "keywords": "Code documentation: https://fz3hra.github.io/server_blog_post_manager.github.io/index.html"
+  },
   "api/Post.API.Configurations.MapperConfig.html": {
     "href": "api/Post.API.Configurations.MapperConfig.html",
     "title": "Class MapperConfig | back_blog_post_manager",
