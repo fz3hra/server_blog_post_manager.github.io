@@ -1392,6 +1392,18 @@ references:
   isSpec: "True"
   fullName: Post.API.Repository.PostRepository.UpdatePost
   nameWithType: PostRepository.UpdatePost
+- uid: User.API.AuthMiddleware
+  name: User.API.AuthMiddleware
+  href: api/User.API.AuthMiddleware.html
+  commentId: N:User.API.AuthMiddleware
+  fullName: User.API.AuthMiddleware
+  nameWithType: User.API.AuthMiddleware
+- uid: User.API.AuthMiddleware.AuthMiddleware
+  name: AuthMiddleware
+  href: api/User.API.AuthMiddleware.AuthMiddleware.html
+  commentId: T:User.API.AuthMiddleware.AuthMiddleware
+  fullName: User.API.AuthMiddleware.AuthMiddleware
+  nameWithType: AuthMiddleware
 - uid: User.API.Configurations
   name: User.API.Configurations
   href: api/User.API.Configurations.html

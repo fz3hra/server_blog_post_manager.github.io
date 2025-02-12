@@ -154,6 +154,16 @@
     "title": "Namespace Post.API.Repository | back_blog_post_manager",
     "keywords": "Namespace Post.API.Repository Classes PostRepository Repository implementation for managing posts."
   },
+  "api/User.API.AuthMiddleware.AuthMiddleware.html": {
+    "href": "api/User.API.AuthMiddleware.AuthMiddleware.html",
+    "title": "Class AuthMiddleware | back_blog_post_manager",
+    "keywords": "Class AuthMiddleware Namespace User.API.AuthMiddleware Assembly User.API.dll public class AuthMiddleware Inheritance object AuthMiddleware Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString()"
+  },
+  "api/User.API.AuthMiddleware.html": {
+    "href": "api/User.API.AuthMiddleware.html",
+    "title": "Namespace User.API.AuthMiddleware | back_blog_post_manager",
+    "keywords": "Namespace User.API.AuthMiddleware Classes AuthMiddleware"
+  },
   "api/User.API.Configurations.MapperConfig.html": {
     "href": "api/User.API.Configurations.MapperConfig.html",
     "title": "Class MapperConfig | back_blog_post_manager",
