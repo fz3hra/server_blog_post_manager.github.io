@@ -1615,15 +1615,15 @@ references:
   commentId: T:User.API.Controllers.AuthController
   fullName: User.API.Controllers.AuthController
   nameWithType: AuthController
-- uid: User.API.Controllers.AuthController.#ctor(User.API.Contracts.IAuthManager)
-  name: AuthController(IAuthManager)
-  href: api/User.API.Controllers.AuthController.html#User_API_Controllers_AuthController__ctor_User_API_Contracts_IAuthManager_
-  commentId: M:User.API.Controllers.AuthController.#ctor(User.API.Contracts.IAuthManager)
-  name.vb: New(IAuthManager)
-  fullName: User.API.Controllers.AuthController.AuthController(User.API.Contracts.IAuthManager)
-  fullName.vb: User.API.Controllers.AuthController.New(User.API.Contracts.IAuthManager)
-  nameWithType: AuthController.AuthController(IAuthManager)
-  nameWithType.vb: AuthController.New(IAuthManager)
+- uid: User.API.Controllers.AuthController.#ctor(User.API.Contracts.IAuthManager,Microsoft.Extensions.Configuration.IConfiguration)
+  name: AuthController(IAuthManager, IConfiguration)
+  href: api/User.API.Controllers.AuthController.html#User_API_Controllers_AuthController__ctor_User_API_Contracts_IAuthManager_Microsoft_Extensions_Configuration_IConfiguration_
+  commentId: M:User.API.Controllers.AuthController.#ctor(User.API.Contracts.IAuthManager,Microsoft.Extensions.Configuration.IConfiguration)
+  name.vb: New(IAuthManager, IConfiguration)
+  fullName: User.API.Controllers.AuthController.AuthController(User.API.Contracts.IAuthManager, Microsoft.Extensions.Configuration.IConfiguration)
+  fullName.vb: User.API.Controllers.AuthController.New(User.API.Contracts.IAuthManager, Microsoft.Extensions.Configuration.IConfiguration)
+  nameWithType: AuthController.AuthController(IAuthManager, IConfiguration)
+  nameWithType.vb: AuthController.New(IAuthManager, IConfiguration)
 - uid: User.API.Controllers.AuthController.#ctor*
   name: AuthController
   href: api/User.API.Controllers.AuthController.html#User_API_Controllers_AuthController__ctor_
@@ -1647,6 +1647,19 @@ references:
   isSpec: "True"
   fullName: User.API.Controllers.AuthController.Login
   nameWithType: AuthController.Login
+- uid: User.API.Controllers.AuthController.Logout
+  name: Logout()
+  href: api/User.API.Controllers.AuthController.html#User_API_Controllers_AuthController_Logout
+  commentId: M:User.API.Controllers.AuthController.Logout
+  fullName: User.API.Controllers.AuthController.Logout()
+  nameWithType: AuthController.Logout()
+- uid: User.API.Controllers.AuthController.Logout*
+  name: Logout
+  href: api/User.API.Controllers.AuthController.html#User_API_Controllers_AuthController_Logout_
+  commentId: Overload:User.API.Controllers.AuthController.Logout
+  isSpec: "True"
+  fullName: User.API.Controllers.AuthController.Logout
+  nameWithType: AuthController.Logout
 - uid: User.API.Controllers.AuthController.Register(User.API.ModelDtos.RegisterDto)
   name: Register(RegisterDto)
   href: api/User.API.Controllers.AuthController.html#User_API_Controllers_AuthController_Register_User_API_ModelDtos_RegisterDto_
@@ -1660,6 +1673,19 @@ references:
   isSpec: "True"
   fullName: User.API.Controllers.AuthController.Register
   nameWithType: AuthController.Register
+- uid: User.API.Controllers.AuthController.VerifyToken
+  name: VerifyToken()
+  href: api/User.API.Controllers.AuthController.html#User_API_Controllers_AuthController_VerifyToken
+  commentId: M:User.API.Controllers.AuthController.VerifyToken
+  fullName: User.API.Controllers.AuthController.VerifyToken()
+  nameWithType: AuthController.VerifyToken()
+- uid: User.API.Controllers.AuthController.VerifyToken*
+  name: VerifyToken
+  href: api/User.API.Controllers.AuthController.html#User_API_Controllers_AuthController_VerifyToken_
+  commentId: Overload:User.API.Controllers.AuthController.VerifyToken
+  isSpec: "True"
+  fullName: User.API.Controllers.AuthController.VerifyToken
+  nameWithType: AuthController.VerifyToken
 - uid: User.API.Data
   name: User.API.Data
   href: api/User.API.Data.html
@@ -1672,6 +1698,19 @@ references:
   commentId: T:User.API.Data.AuthResponseDto
   fullName: User.API.Data.AuthResponseDto
   nameWithType: AuthResponseDto
+- uid: User.API.Data.AuthResponseDto.Email
+  name: Email
+  href: api/User.API.Data.AuthResponseDto.html#User_API_Data_AuthResponseDto_Email
+  commentId: P:User.API.Data.AuthResponseDto.Email
+  fullName: User.API.Data.AuthResponseDto.Email
+  nameWithType: AuthResponseDto.Email
+- uid: User.API.Data.AuthResponseDto.Email*
+  name: Email
+  href: api/User.API.Data.AuthResponseDto.html#User_API_Data_AuthResponseDto_Email_
+  commentId: Overload:User.API.Data.AuthResponseDto.Email
+  isSpec: "True"
+  fullName: User.API.Data.AuthResponseDto.Email
+  nameWithType: AuthResponseDto.Email
 - uid: User.API.Data.AuthResponseDto.Token
   name: Token
   href: api/User.API.Data.AuthResponseDto.html#User_API_Data_AuthResponseDto_Token
@@ -1698,6 +1737,19 @@ references:
   isSpec: "True"
   fullName: User.API.Data.AuthResponseDto.UserId
   nameWithType: AuthResponseDto.UserId
+- uid: User.API.Data.AuthResponseDto.UserName
+  name: UserName
+  href: api/User.API.Data.AuthResponseDto.html#User_API_Data_AuthResponseDto_UserName
+  commentId: P:User.API.Data.AuthResponseDto.UserName
+  fullName: User.API.Data.AuthResponseDto.UserName
+  nameWithType: AuthResponseDto.UserName
+- uid: User.API.Data.AuthResponseDto.UserName*
+  name: UserName
+  href: api/User.API.Data.AuthResponseDto.html#User_API_Data_AuthResponseDto_UserName_
+  commentId: Overload:User.API.Data.AuthResponseDto.UserName
+  isSpec: "True"
+  fullName: User.API.Data.AuthResponseDto.UserName
+  nameWithType: AuthResponseDto.UserName
 - uid: User.API.Data.UserApi
   name: UserApi
   href: api/User.API.Data.UserApi.html
